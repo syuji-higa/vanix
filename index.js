@@ -6,17 +6,17 @@ class Store {
    * @param {Object} [object.actions]
    */
   constructor({ state, mutations, actions }) {
-    this._update = new Map()
-    this._stateReadOnly = {}
-    this._state = {}
-    this._mutations = {}
-    this._actions = {}
-    
-    this._stateReadOnly = this._createSstateReadOnly(state)
-    this._state = this._createState(state)
+    this._update = new Map();
+    this._stateReadOnly = {};
+    this._state = {};
+    this._mutations = {};
+    this._actions = {};
 
-    Object.assign(this._mutations, mutations || {})
-    Object.assign(this._actions, actions || {})
+    this._stateReadOnly = this._createSstateReadOnly(state);
+    this._state = this._createState(state);
+
+    Object.assign(this._mutations, mutations || {});
+    Object.assign(this._actions, actions || {});
   }
 
   /**
@@ -34,21 +34,21 @@ class Store {
       dispatch: this._dispatch.bind(this),
       observe: this._observe.bind(this),
       unobserve: this._unobserve.bind(this)
-    }
+    };
   }
 
   /**
    * @return {Instance}
    */
   destroy() {
-    this._update.clear()
+    this._update.clear();
     for (const prop of Object.keys(this._stateReadOnly)) {
-      delete this._stateReadOnly[prop]
+      delete this._stateReadOnly[prop];
     }
     for (const prop of Object.keys(this._state)) {
-      delete this._state[prop]
+      delete this._state[prop];
     }
-    return this
+    return this;
   }
 
   /**
@@ -61,11 +61,11 @@ class Store {
         enumerable: true,
         configurable: true,
         get: function() {
-          return state[prop]
+          return state[prop];
         }
-      })
-      return memo
-    }, {})
+      });
+      return memo;
+    }, {});
   }
 
   /**
@@ -74,27 +74,27 @@ class Store {
    */
   _createState(state) {
     return Object.keys(state).reduce((memo, prop) => {
-      const _this = this
+      const _this = this;
       Object.defineProperty(memo, prop, {
         enumerable: true,
         configurable: true,
         get: function() {
-          return state[prop]
+          return state[prop];
         },
         set: function(val) {
           if (state[prop] === val) {
-            return
+            return;
           }
-          state[prop] = val
+          state[prop] = val;
           if (_this._update.has(prop)) {
-            _this._update.get(prop).forEach((func) => {
-              func(_this._stateReadOnly)
-            })
+            _this._update.get(prop).forEach(func => {
+              func(_this._stateReadOnly);
+            });
           }
         }
-      })
-      return memo
-    }, {})
+      });
+      return memo;
+    }, {});
   }
 
   /**
@@ -102,11 +102,10 @@ class Store {
    * @param {*} arg
    */
   _commit(prop, ...arg) {
-    console.log(this)
     if (!(prop in this._mutations)) {
-      throw new Error(`Not found "${prop}" mutations.`)
+      throw new Error(`Not found "${prop}" mutations.`);
     }
-    this._mutations[prop](this._state, ...arg)
+    this._mutations[prop](this._state, ...arg);
   }
 
   /**
@@ -115,7 +114,7 @@ class Store {
    */
   _dispatch(prop, ...arg) {
     if (!(prop in this._actions)) {
-      throw new Error(`Not found "${prop}" actions.`)
+      throw new Error(`Not found "${prop}" actions.`);
     }
     this._actions[prop](
       {
@@ -125,7 +124,7 @@ class Store {
         dispatch: this._dispatch.bind(this)
       },
       ...arg
-    )
+    );
   }
 
   /**
@@ -135,11 +134,11 @@ class Store {
   _observe(observeObj) {
     for (const [prop, func] of Object.entries(observeObj)) {
       if (!this._update.has(prop)) {
-        this._update.set(prop, new Set())
+        this._update.set(prop, new Set());
       }
-      this._update.get(prop).add(func)
+      this._update.get(prop).add(func);
     }
-    return observeObj
+    return observeObj;
   }
 
   /**
@@ -148,13 +147,13 @@ class Store {
   _unobserve(observeObj) {
     for (const [prop, func] of Object.entries(observeObj)) {
       if (this._update.has(prop) && this._update.get(prop).has(func)) {
-        this._update.get(prop).delete(func)
+        this._update.get(prop).delete(func);
         if (0 >= this._update.get(prop).size) {
-          this._update.delete(prop)
+          this._update.delete(prop);
         }
       }
     }
   }
 }
 
-export { Store as default }
+export { Store as default };
