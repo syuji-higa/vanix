@@ -1,6 +1,6 @@
 # Vanix
 [Vuex](https://github.com/vuejs/vuex) like Flux Library.  
-Not support view.  
+Not support component.  
 Support ES6 or later. Please transpile if want supporting ES5.
 
 ## install
