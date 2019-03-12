@@ -1,4 +1,4 @@
-class Store {
+class Vanix {
   /**
    * @param {Object} object
    * @param {Object} [object.state]
@@ -156,4 +156,4 @@ class Store {
   }
 }
 
-export { Store as default };
+export { Vanix as default };

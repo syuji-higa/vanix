@@ -1,6 +1,6 @@
 {
   "name": "vanix",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Vuex like Flux Library",
   "main": "index.js",
   "scripts": {
