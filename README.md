@@ -1,5 +1,5 @@
 # Vanix
-[Vuex](https://github.com/vuejs/vuex) like Flux Library.  
+[Vuex](https://github.com/vuejs/vuex) like state management library.  
 Not support component.  
 Support ES6 or later. Please transpile if want supporting ES5.
 
