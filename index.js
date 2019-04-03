@@ -1,5 +1,5 @@
 /**
- * vanix v0.0.6
+ * vanix v0.0.7
  * (c) 2019 Syuji Higa
  * @license MIT
  */

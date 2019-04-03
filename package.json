@@ -1,6 +1,6 @@
 {
   "name": "vanix",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Vuex like Flux Library",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "vuex",
     "flux"
   ],
-  "author": "syuji-higa",
+  "author": "Syuji Higa",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/syuji-higa/vanix/issues"
