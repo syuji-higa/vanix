@@ -1,3 +1,9 @@
+/**
+ * vanix v0.0.6
+ * (c) 2019 Syuji Higa
+ * @license MIT
+ */
+
 class Vanix {
   /**
    * @param {Object} object

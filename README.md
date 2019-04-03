@@ -77,3 +77,6 @@ const store = vanix.create()
 
 vanix.destroy()
 ```
+
+## License
+[MIT](https://opensource.org/licenses/MIT)
